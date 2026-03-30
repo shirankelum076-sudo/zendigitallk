@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZenDigital.lk — Web Solutions & AI Automation for salons, spas & clinics across Sri Lanka. Websites, AI chatbots, WhatsApp automation & CRM from LKR 25,000.">
+  <meta property="og:title" content="ZenDigital.lk — Web Solutions & AI Automation">
+  <meta property="og:description" content="We build modern websites, AI chatbots, and smart automation for salons, spas & clinics in Sri Lanka.">
+  <meta property="og:type" content="website">
+  <title>ZenDigital.lk — Web Solutions & AI Automation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       CSS CUSTOM PROPERTIES
+    ======================== */
+    :root {
+      --color-bg: #0b1a2b;
+      --color-bg-deep: #071321;
+      --color-surface: #0f2236;
+      --color-surface-light: #142d47;
+      --color-border: rgba(46,204,113,0.12);
+      --color-border-subtle: rgba(255,255,255,0.06);
+      --color-text: #e8f0f8;
+      --color-text-muted: #7a96b0;
+      --color-primary: #2ecc71;
+      --color-primary-hover: #27ae60;
+      --color-primary-glow: rgba(46,204,113,0.15);
+      --color-secondary: #3498db;
+      --color-accent-warm: #f39c12;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+
+      --transition: 0.3s ease;
+      --container: 1200px;
+    }
+
+    /* ========================
+       RESET
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ========================
+       UTILITIES
+    ======================== */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 28px; }
+    .section { padding: 110px 0; }
+    .section-label { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-primary); margin-bottom: 14px; display: inline-block; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin-bottom: 18px; font-weight: 800; }
+    .section-desc { font-size: 1.1rem; color: var(--color-text-muted); max-width: 580px; line-height: 1.75; }
+    .section-header { margin-bottom: 60px; }
+    .skip-link { position: absolute; top: -100px; left: 16px; background: var(--color-primary); color: #000; padding: 8px 16px; border-radius: var(--radius-sm); z-index: 999; font-weight: 600; }
+    .skip-link:focus { top: 16px; }
+
+    /* ========================
+       REVEAL ANIMATION
+    ======================== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ========================
+       BUTTONS
+    ======================== */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; padding: 15px 32px; border-radius: var(--radius-xl); transition: all var(--transition); font-family: var(--font-body); }
+    .btn-primary { background: var(--color-primary); color: #071321; }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(46,204,113,0.3); }
+    .btn-ghost { border: 1.5px solid rgba(46,204,113,0.3); color: var(--color-text); }
+    .btn-ghost:hover { border-color: var(--color-primary); background: rgba(46,204,113,0.06); transform: translateY(-2px); }
+    .btn-primary:active, .btn-ghost:active { transform: translateY(0); }
+
+    /* ========================
+       NAVBAR
+    ======================== */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s; }
+    nav.scrolled { background: rgba(7,19,33,0.92); backdrop-filter: blur(16px); padding: 14px 0; border-bottom: 1px solid var(--color-border-subtle); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+    .nav-logo .logo-icon { width: 36px; height: 36px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: var(--color-bg-deep); }
+    .nav-logo .logo-dot { color: var(--color-primary); }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; position: relative; color: var(--color-text-muted); transition: color var(--transition); }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--color-primary); transition: width 0.3s ease; border-radius: 2px; }
+    .nav-link:hover { color: var(--color-text); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-cta { background: var(--color-primary); color: var(--color-bg-deep); font-size: 0.85rem; font-weight: 700; padding: 11px 24px; border-radius: var(--radius-xl); transition: all var(--transition); }
+    .nav-cta:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(46,204,113,0.25); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 4px; z-index: 101; }
+    .nav-toggle span { display: block; width: 26px; height: 2.5px; background: var(--color-text); transition: var(--transition); border-radius: 3px; }
+    .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--color-bg-deep); flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+      .nav-links.open { display: flex; }
+      .nav-link { font-size: 1.3rem; color: var(--color-text); }
+      .nav-cta { font-size: 1rem; padding: 14px 36px; }
+    }
+
+    /* ========================
+       HERO
+    ======================== */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 0 80px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(46,204,113,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(52,152,219,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.2); border-radius: var(--radius-xl); padding: 8px 18px 8px 10px; font-size: 0.8rem; font-weight: 600; color: var(--color-primary); margin-bottom: 24px; }
+    .hero-badge .dot { width: 8px; height: 8px; background: var(--color-primary); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; font-weight: 800; }
+    .hero-title .highlight { color: var(--color-primary); display: inline-block; position: relative; }
+    .hero-title .highlight::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 4px; background: var(--color-primary); opacity: 0.3; border-radius: 2px; }
+    .hero-sub { font-size: 1.15rem; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 36px; max-width: 500px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-visual { position: relative; display: flex; justify-content: center; }
+    .hero-graphic { width: 100%; max-width: 450px; aspect-ratio: 1; position: relative; }
+    .hero-orb { position: absolute; border-radius: 50%; }
+    .hero-orb-1 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, rgba(46,204,113,0.02) 70%); border: 1px solid rgba(46,204,113,0.15); animation: float 6s ease-in-out infinite; }
+    .hero-orb-2 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(52,152,219,0.12) 0%, transparent 70%); border: 1px solid rgba(52,152,219,0.12); animation: float 8s ease-in-out infinite reverse; }
+    .hero-orb-3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--color-primary); opacity: 0.08; }
+    @keyframes float { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.06); } }
+    .hero-card { position: absolute; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px 20px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: cardFloat 5s ease-in-out infinite; }
+    .hero-card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .hero-card-1 { top: 15%; right: 0; animation-delay: 0s; }
+    .hero-card-1 .hero-card-icon { background: rgba(46,204,113,0.15); }
+    .hero-card-2 { bottom: 25%; left: -10px; animation-delay: 1.5s; }
+    .hero-card-2 .hero-card-icon { background: rgba(52,152,219,0.15); }
+    .hero-card-3 { bottom: 5%; right: 10%; animation-delay: 3s; }
+    .hero-card-3 .hero-card-icon { background: rgba(243,156,18,0.15); }
+    @keyframes cardFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+    }
+
+    /* ========================
+       STATS BAR
+    ======================== */
+    .stats { padding: 50px 0; border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-deep); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-item { }
+    .stat-number { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--color-primary); margin-bottom: 4px; }
+    .stat-label { font-size: 0.85rem; color: var(--color-text-muted); font-weight: 500; }
+    @media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+
+    /* ========================
+       SERVICES
+    ======================== */
+    .services { background: var(--color-bg); }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .service-card { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); padding: 40px 32px; transition: all var(--transition); position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .service-card:hover { border-color: var(--color-border); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 56px; height: 56px; background: var(--color-primary-glow); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 22px; }
+    .service-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .service-card p { color: var(--color-text-muted); line-height: 1.75; font-size: 0.95rem; }
+    .service-features { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-tag { font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: var(--radius-xl); background: rgba(46,204,113,0.08); color: var(--color-primary); border: 1px solid rgba(46,204,113,0.15); }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* ========================
+       PRICING
+    ======================== */
+    .pricing { background: var(--color-bg-deep); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .price-card { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 40px 32px; transition: all var(--transition); position: relative; display: flex; flex-direction: column; }
+    .price-card:hover { transform: translateY(-6px); border-color: var(--color-border); box-shadow: 0 24px 60px rgba(0,0,0,0.35); }
+    .price-card.featured { border-color: var(--color-primary); background: linear-gradient(180deg, rgba(46,204,113,0.06) 0%, var(--color-surface) 50%); }
+    .price-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--color-primary); color: var(--color-bg-deep); font-size: 0.72rem; font-weight: 700; padding: 6px 18px; border-radius: var(--radius-xl); letter-spacing: 0.08em; text-transform: uppercase; }
+    .price-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--color-text-muted); }
+    .price-amount { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; margin-bottom: 4px; }
+    .price-amount span { font-size: 1rem; font-weight: 500; color: var(--color-text-muted); }
+    .price-desc { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 28px; line-height: 1.6; }
+    .price-features { flex: 1; margin-bottom: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .price-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--color-text); }
+    .price-check { color: var(--color-primary); font-weight: 700; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .price-card .btn { width: 100%; justify-content: center; }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+    /* ========================
+       WHY CHOOSE US
+    ======================== */
+    .why { background: var(--color-bg); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .why-card { text-align: center; padding: 36px 24px; border-radius: var(--radius-md); transition: all var(--transition); }
+    .why-card:hover { background: var(--color-surface); }
+    .why-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: var(--color-primary-glow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .why-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.7; }
+    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* ========================
+       PROCESS
+    ======================== */
+    .process { background: var(--color-bg-deep); }
+    .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px; background: linear-gradient(to right, var(--color-primary), rgba(46,204,113,0.1)); z-index: 0; }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .step-number { width: 72px; height: 72px; margin: 0 auto 18px; background: var(--color-surface); border: 2px solid var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--color-primary); }
+    .process-step h3 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .process-step p { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6; padding: 0 4px; }
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr; gap: 32px; }
+      .process-steps::before { display: none; }
+    }
+
+    /* ========================
+       TESTIMONIALS
+    ======================== */
+    .testimonials { background: var(--color-bg); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .testimonial-card { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); padding: 36px 28px; display: flex; flex-direction: column; gap: 24px; transition: all var(--transition); }
+    .testimonial-card:hover { border-color: var(--color-border); transform: translateY(-4px); }
+    .testimonial-stars { color: var(--color-accent-warm); font-size: 0.9rem; letter-spacing: 2px; }
+    .testimonial-card blockquote { font-size: 0.95rem; line-height: 1.75; color: var(--color-text); font-style: italic; flex: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--color-primary-glow); border: 2px solid var(--color-primary); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: var(--color-primary); flex-shrink: 0; }
+    .testimonial-author strong { display: block; font-weight: 600; font-size: 0.9rem; }
+    .testimonial-author span { font-size: 0.8rem; color: var(--color-text-muted); }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ========================
+       CTA BANNER
+    ======================== */
+    .cta-banner { padding: 100px 0; background: linear-gradient(135deg, rgba(46,204,113,0.08) 0%, var(--color-bg-deep) 50%, rgba(52,152,219,0.06) 100%); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); text-align: center; }
+    .cta-banner .section-title { max-width: 650px; margin-left: auto; margin-right: auto; }
+    .cta-banner .section-desc { margin: 0 auto 36px; text-align: center; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========================
+       CONTACT
+    ======================== */
+    .contact { background: var(--color-bg); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+    .contact-info-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .contact-info-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); transition: all var(--transition); }
+    .contact-info-card:hover { border-color: var(--color-border); }
+    .contact-info-icon { width: 44px; height: 44px; background: var(--color-primary-glow); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-info-card h4 { font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-info-card p { font-size: 0.95rem; font-weight: 600; }
+    .contact-form { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: 40px 36px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--color-text-muted); }
+    .form-group input, .form-group textarea, .form-group select { background: var(--color-bg); border: 1.5px solid var(--color-border-subtle); border-radius: var(--radius-sm); padding: 14px 16px; color: var(--color-text); font-family: var(--font-body); font-size: 0.95rem; transition: border-color var(--transition); outline: none; resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(46,204,113,0.1); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--color-text-muted); opacity: 0.5; }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237a96b0' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+    .form-group select option { background: var(--color-surface); color: var(--color-text); }
+    @media (max-width: 768px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    .footer { background: var(--color-bg-deep); border-top: 1px solid var(--color-border-subtle); padding: 64px 0 0; }
+    .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 56px; }
+    .footer-brand p { color: var(--color-text-muted); margin-top: 14px; font-size: 0.9rem; max-width: 280px; line-height: 1.7; }
+    .footer-col h4 { font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text); margin-bottom: 20px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { color: var(--color-text-muted); font-size: 0.9rem; transition: color var(--transition); }
+    .footer-col a:hover { color: var(--color-primary); }
+    .footer-social { display: flex; gap: 12px; margin-top: 4px; }
+    .footer-social a { width: 40px; height: 40px; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; transition: all var(--transition); }
+    .footer-social a:hover { border-color: var(--color-primary); color: var(--color-primary); background: rgba(46,204,113,0.06); }
+    .footer-bottom { border-top: 1px solid var(--color-border-subtle); padding: 20px 0; }
+    .footer-bottom-inner { display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.82rem; color: var(--color-text-muted); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 0.82rem; color: var(--color-text-muted); transition: color var(--transition); }
+    .footer-bottom-links a:hover { color: var(--color-primary); }
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-bottom-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) { .footer-inner { grid-template-columns: 1fr; } }
+
+    /* ========================
+       WHATSAPP FLOAT
+    ======================== */
+    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 90; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: all var(--transition); cursor: pointer; }
+    .whatsapp-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37,211,102,0.45); }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" aria-label="ZenDigital Home">
+        <span class="logo-icon">Z</span>
+        ZenDigital<span class="logo-dot">.lk</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="nav-menu" class="nav-links" role="list">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#process" class="nav-link">Process</a></li>
+        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Free Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="dot"></span>
+          Now serving businesses across Sri Lanka
+        </div>
+        <h1 class="hero-title reveal reveal-d1">
+          Websites & <span class="highlight">AI Automation</span> for Salons, Spas & Clinics
+        </h1>
+        <p class="hero-sub reveal reveal-d2">
+          We build modern, beautiful websites and intelligent automation systems that help beauty and wellness businesses save time, attract more customers, and grow — all at affordable prices.
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a href="#contact" class="btn btn-primary">Get a Free Quote →</a>
+          <a href="#services" class="btn btn-ghost">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal reveal-d2">
+        <div class="hero-graphic">
+          <div class="hero-orb hero-orb-1"></div>
+          <div class="hero-orb hero-orb-2"></div>
+          <div class="hero-orb hero-orb-3"></div>
+          <div class="hero-card hero-card-1">
+            <div class="hero-card-icon">🌐</div>
+            <span>Website Live!</span>
+          </div>
+          <div class="hero-card hero-card-2">
+            <div class="hero-card-icon">🤖</div>
+            <span>AI Chatbot Active</span>
+          </div>
+          <div class="hero-card hero-card-3">
+            <div class="hero-card-icon">📅</div>
+            <span>12 New Bookings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== STATS ======================== -->
+  <section class="stats" aria-label="Stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item reveal reveal-d1">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">AI Chatbot Support</div>
+        </div>
+        <div class="stat-item reveal reveal-d2">
+          <div class="stat-number">2x</div>
+          <div class="stat-label">Average Booking Increase</div>
+        </div>
+        <div class="stat-item reveal reveal-d3">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Provinces Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+
+  <!-- ======================== SERVICES ======================== -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Services</span>
+        <h2 class="section-title">Everything your business needs to thrive online</h2>
+        <p class="section-desc">From stunning websites to AI-powered automation — we handle the tech so you can focus on your clients.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🌐</div>
+          <h3>Website Design & Development</h3>
+          <p>Custom, mobile-first websites tailored for your brand. Fast, SEO-optimized, and designed to convert visitors into paying clients.</p>
+          <div class="service-features">
+            <span class="service-tag">Responsive Design</span>
+            <span class="service-tag">SEO Optimized</span>
+            <span class="service-tag">Fast Loading</span>
+          </div>
+        </div>
+        <div class="service-card reveal reveal-d1">
+          <div class="service-icon">🤖</div>
+          <h3>AI Chatbots & WhatsApp Automation</h3>
+          <p>Intelligent chatbots that handle bookings, answer FAQs, and engage your customers 24/7 — in both Sinhala and English via WhatsApp.</p>
+          <div class="service-features">
+            <span class="service-tag">WhatsApp Bots</span>
+            <span class="service-tag">Sinhala + English</span>
+            <span class="service-tag">24/7 Active</span>
+          </div>
+        </div>
+        <div class="service-card reveal reveal-d2">
+          <div class="service-icon">📱</div>
+          <h3>Social Media Automation</h3>
+          <p>Automated content scheduling, posting, and engagement across Facebook, Instagram, and TikTok to keep your brand active without the effort.</p>
+          <div class="service-features">
+            <span class="service-tag">Auto Posting</span>
+            <span class="service-tag">Content Calendar</span>
+            <span class="service-tag">Analytics</span>
+          </div>
+        </div>
+        <div class="service-card reveal reveal-d3">
+          <div class="service-icon">📋</div>
+          <h3>CRM & Booking Systems</h3>
+          <p>Integrated customer management and online appointment systems that reduce no-shows, send auto-reminders, and streamline daily operations.</p>
+          <div class="service-features">
+            <span class="service-tag">Online Booking</span>
+            <span class="service-tag">Auto Reminders</span>
+            <span class="service-tag">Client Database</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PRICING ======================== -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center;">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Affordable packages for every business</h2>
+        <p class="section-desc" style="margin:0 auto;text-align:center;">One-time project fees. No hidden costs. Free consultation included with every package.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="price-card reveal">
+          <div class="price-name">Starter</div>
+          <div class="price-amount">LKR 25K <span>/ project</span></div>
+          <p class="price-desc">Perfect for businesses just getting started online.</p>
+          <div class="price-features">
+            <div class="price-feature"><span class="price-check">✓</span> Single-page website</div>
+            <div class="price-feature"><span class="price-check">✓</span> Mobile responsive design</div>
+            <div class="price-feature"><span class="price-check">✓</span> Basic SEO setup</div>
+            <div class="price-feature"><span class="price-check">✓</span> Contact form</div>
+            <div class="price-feature"><span class="price-check">✓</span> WhatsApp button</div>
+            <div class="price-feature"><span class="price-check">✓</span> 1 month free support</div>
+          </div>
+          <a href="#contact" class="btn btn-ghost">Get Started</a>
+        </div>
+        <!-- Professional -->
+        <div class="price-card featured reveal reveal-d1">
+          <div class="price-badge">Most Popular</div>
+          <div class="price-name">Professional</div>
+          <div class="price-amount">LKR 50K <span>/ project</span></div>
+          <p class="price-desc">For businesses ready to automate and grow.</p>
+          <div class="price-features">
+            <div class="price-feature"><span class="price-check">✓</span> Multi-page website (5 pages)</div>
+            <div class="price-feature"><span class="price-check">✓</span> Online booking system</div>
+            <div class="price-feature"><span class="price-check">✓</span> WhatsApp chatbot</div>
+            <div class="price-feature"><span class="price-check">✓</span> Google Maps integration</div>
+            <div class="price-feature"><span class="price-check">✓</span> Social media links</div>
+            <div class="price-feature"><span class="price-check">✓</span> 1 month free support</div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+        <!-- Premium -->
+        <div class="price-card reveal reveal-d2">
+          <div class="price-name">Premium</div>
+          <div class="price-amount">LKR 75K <span>/ project</span></div>
+          <p class="price-desc">Full website + AI automation powerhouse.</p>
+          <div class="price-features">
+            <div class="price-feature"><span class="price-check">✓</span> Full website + AI automation</div>
+            <div class="price-feature"><span class="price-check">✓</span> AI chatbot (Sinhala & English)</div>
+            <div class="price-feature"><span class="price-check">✓</span> CRM integration</div>
+            <div class="price-feature"><span class="price-check">✓</span> Automated appointment reminders</div>
+            <div class="price-feature"><span class="price-check">✓</span> Social media auto-posting</div>
+            <div class="price-feature"><span class="price-check">✓</span> Monthly maintenance included</div>
+          </div>
+          <a href="#contact" class="btn btn-ghost">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== WHY CHOOSE US ======================== -->
+  <section class="section why" id="why">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center;">
+        <span class="section-label">Why ZenDigital?</span>
+        <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Built different. Built for you.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">🎯</div>
+          <h3>Industry Experts</h3>
+          <p>We specialize in salons, spas, and clinics. Every solution is tailored to your industry, not generic templates.</p>
+        </div>
+        <div class="why-card reveal reveal-d1">
+          <div class="why-icon">🧠</div>
+          <h3>AI-Powered</h3>
+          <p>Our intelligent chatbots, auto-reminders, and smart CRM tools give your business a serious competitive edge.</p>
+        </div>
+        <div class="why-card reveal reveal-d2">
+          <div class="why-icon">🌏</div>
+          <h3>Bilingual Solutions</h3>
+          <p>Everything works in both Sinhala and English — reaching your entire customer base across Sri Lanka.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">💰</div>
+          <h3>Affordable Pricing</h3>
+          <p>Enterprise-grade quality at prices designed for Sri Lankan SMEs. From just LKR 25,000.</p>
+        </div>
+        <div class="why-card reveal reveal-d1">
+          <div class="why-icon">🏝️</div>
+          <h3>Island-wide Service</h3>
+          <p>Fully remote operations serving all 9 provinces. No geographic limitations whatsoever.</p>
+        </div>
+        <div class="why-card reveal reveal-d2">
+          <div class="why-icon">🚀</div>
+          <h3>Fast Delivery</h3>
+          <p>Most projects delivered within 1-2 weeks. Because your business shouldn't have to wait.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PROCESS ======================== -->
+  <section class="section process" id="process">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center;">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title" style="margin-left:auto;margin-right:auto;">From idea to launch in 5 simple steps</h2>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-number">01</div>
+          <h3>Free Consultation</h3>
+          <p>We discuss your business goals and needs.</p>
+        </div>
+        <div class="process-step reveal reveal-d1">
+          <div class="step-number">02</div>
+          <h3>Proposal</h3>
+          <p>Custom solution with wireframes and timeline.</p>
+        </div>
+        <div class="process-step reveal reveal-d2">
+          <div class="step-number">03</div>
+          <h3>Development</h3>
+          <p>We build with regular progress updates.</p>
+        </div>
+        <div class="process-step reveal reveal-d3">
+          <div class="step-number">04</div>
+          <h3>Launch</h3>
+          <p>Go live and train your team to use it.</p>
+        </div>
+        <div class="process-step reveal reveal-d4">
+          <div class="step-number">05</div>
+          <h3>Support</h3>
+          <p>Ongoing help and monthly maintenance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TESTIMONIALS ======================== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Client Reviews</span>
+        <h2 class="section-title">Trusted by businesses across Sri Lanka</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>Our new website and WhatsApp chatbot have completely transformed how we handle bookings. We now get 3x more online appointments than before!</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">NK</div>
+            <div>
+              <strong>Nimali K.</strong>
+              <span>Glow Beauty Salon, Colombo</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-d1">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>ZenDigital built us a beautiful website with an automated reminder system. No-shows dropped by 60% in the first month. Incredible value for the price!</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RP</div>
+            <div>
+              <strong>Dr. Ruwan P.</strong>
+              <span>Smile Dental Clinic, Kandy</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-d2">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>The AI chatbot handles our inquiries in Sinhala and English perfectly. Our customers love being able to book through WhatsApp at any time!</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SD</div>
+            <div>
+              <strong>Shalini D.</strong>
+              <span>Serenity Spa, Galle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CTA BANNER ======================== -->
+  <section class="cta-banner" aria-label="Call to action">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Ready to get started?</span>
+        <h2 class="section-title">Let's build your digital future together</h2>
+        <p class="section-desc">Get a free consultation and custom proposal for your salon, spa, or clinic. No commitment required.</p>
+        <div class="cta-actions">
+          <a href="#contact" class="btn btn-primary">Get a Free Quote →</a>
+          <a href="https://wa.me/94768426328" class="btn btn-ghost" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CONTACT ======================== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <div class="reveal">
+            <span class="section-label">Contact Us</span>
+            <h2 class="section-title">Tell us about your project</h2>
+            <p class="section-desc">Fill out the form and we'll get back to you within 24 hours with a free custom proposal.</p>
+          </div>
+          <div class="contact-info-cards reveal reveal-d1">
+            <div class="contact-info-card">
+              <div class="contact-info-icon">📧</div>
+              <div>
+                <h4>Email</h4>
+                <p>zendigital.lk@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon">📱</div>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>+94 76 842 6328</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="contact-info-icon">📍</div>
+              <div>
+                <h4>Location</h4>
+                <p>Fully Remote · Island-wide, Sri Lanka</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form reveal reveal-d2">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Nimali Perera" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="e.g. nimali@gmail.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. +94 77 123 4567">
+            </div>
+            <div class="form-group">
+              <label for="business">Business Type</label>
+              <select id="business" name="business">
+                <option value="">Select your business type</option>
+                <option value="salon">Hair Salon / Beauty Parlor</option>
+                <option value="spa">Spa / Wellness Center</option>
+                <option value="clinic">Clinic / Medical Practice</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="package">Interested Package</label>
+            <select id="package" name="package">
+              <option value="">Select a package</option>
+              <option value="starter">Starter — LKR 25,000</option>
+              <option value="professional">Professional — LKR 50,000</option>
+              <option value="premium">Premium — LKR 75,000</option>
+              <option value="custom">Custom / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your project</label>
+            <textarea id="message" name="message" rows="4" placeholder="Describe your business and what you need..." required></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;" onclick="handleSubmit()">Send Message →</button>
+          <div id="form-success" style="display:none;text-align:center;padding:16px;margin-top:16px;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);border-radius:var(--radius-sm);color:var(--color-primary);font-weight:600;">
+            ✓ Thank you! We'll get back to you within 24 hours.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="logo-icon">Z</span>
+          ZenDigital<span class="logo-dot">.lk</span>
+        </a>
+        <p>Web Solutions & AI Automation for salons, spas, and clinics across Sri Lanka.</p>
+        <div class="footer-social" style="margin-top:20px;">
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="LinkedIn">Li</a>
+          <a href="#" aria-label="TikTok">Tk</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Web Design</a></li>
+          <li><a href="#services">AI Chatbots</a></li>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">CRM Systems</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">About Us</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:zendigital.lk@gmail.com">zendigital.lk@gmail.com</a></li>
+          <li><a href="tel:+94768426328">+94 76 842 6328</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; <span id="year"></span> ZenDigital.lk. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== WHATSAPP FLOAT ======================== -->
+  <a href="https://wa.me/94768426328" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ======================== JAVASCRIPT ======================== -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Navbar scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', scrollY > 60);
+    });
+
+    // Mobile menu
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Form handling
+    function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('message').value = '';
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
