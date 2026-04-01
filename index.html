@@ -132,10 +132,7 @@
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero-visual { position: relative; display: flex; justify-content: center; }
     .hero-graphic { width: 100%; max-width: 450px; aspect-ratio: 1; position: relative; }
-    .hero-orb { position: absolute; border-radius: 50%; }
-    .hero-orb-1 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(46,204,113,0.15) 0%, rgba(46,204,113,0.02) 70%); border: 1px solid rgba(46,204,113,0.15); animation: float 6s ease-in-out infinite; }
-    .hero-orb-2 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(52,152,219,0.12) 0%, transparent 70%); border: 1px solid rgba(52,152,219,0.12); animation: float 8s ease-in-out infinite reverse; }
-    .hero-orb-3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--color-primary); opacity: 0.08; }
+    .hero-img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 32px 80px rgba(0,0,0,0.55); border: 1px solid var(--color-border); }
     @keyframes float { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.06); } }
     .hero-card { position: absolute; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px 20px; display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: cardFloat 5s ease-in-out infinite; }
     .hero-card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
@@ -300,6 +297,16 @@
     @media (max-width: 480px) { .footer-inner { grid-template-columns: 1fr; } }
 
     /* ========================
+       SHOWCASE
+    ======================== */
+    .showcase { background: var(--color-bg-deep); }
+    .showcase-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .showcase-img { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 30px 70px rgba(0,0,0,0.45); position: relative; }
+    .showcase-img img { width: 100%; display: block; transition: transform 0.5s ease; }
+    .showcase-img:hover img { transform: scale(1.02); }
+    @media (max-width: 900px) { .showcase-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ========================
        WHATSAPP FLOAT
     ======================== */
     .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 90; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(37,211,102,0.35); transition: all var(--transition); cursor: pointer; }
@@ -351,9 +358,7 @@
       </div>
       <div class="hero-visual reveal reveal-d2">
         <div class="hero-graphic">
-          <div class="hero-orb hero-orb-1"></div>
-          <div class="hero-orb hero-orb-2"></div>
-          <div class="hero-orb hero-orb-3"></div>
+          <img src="images/Gemini_Generated_Image_s8ggh8s8ggh8s8gg.png" alt="Sri Lankan business with digital presence and Google Maps integration" class="hero-img">
           <div class="hero-card hero-card-1">
             <div class="hero-card-icon">🌐</div>
             <span>Website Live!</span>
@@ -446,6 +451,24 @@
             <span class="service-tag">Client Database</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SHOWCASE ======================== -->
+  <section class="section showcase">
+    <div class="container showcase-inner">
+      <div class="reveal">
+        <span class="section-label">Real Results</span>
+        <h2 class="section-title">Put your business on the digital map</h2>
+        <p class="section-desc">From Google Maps integration to AI-powered booking — we give your salon, spa, or clinic the online presence it deserves. Customers find you, book with you, and come back.</p>
+        <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+          <a href="#services" class="btn btn-ghost">See All Services</a>
+        </div>
+      </div>
+      <div class="showcase-img reveal reveal-d1">
+        <img src="images/Gemini_Generated_Image_tqnmactqnmactqnm.png" alt="Multi-channel digital presence — Maps, Reviews, and Analytics for your business">
       </div>
     </div>
   </section>
